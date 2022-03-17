@@ -54,7 +54,6 @@ Add a New Project
 =================
 `);
 
-// If there's no 'projects' array property, create one
 if (!portfolioData.projects) {
     portfolioData.projects = [];
 }
@@ -127,14 +126,12 @@ return inquirer
     }
     });
 };
-
-
-
-const pageHTML = generatePage(termName, github);
-
-
-fs.writeFile('index.html', generatePage(termName,github), err => {
-    if (err) throw err;
-
-    console.log("Portfolio Complete! Check it out man!")
-});
+promptUser()
+  .then(promptProject)
+  .then(portfolioData => {
+    const pageHTML = generatePage(portfolioData);
+    fs.writeFile('./index.html', pageHTML, err => {
+      if (err) throw new Error(err);
+      console.log('Page created! Check out index.html in this directory to see it!');
+    });
+  });
