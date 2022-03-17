@@ -1,4 +1,4 @@
-const generatePage = (termName, github) =>{
+module.exports = (termName, github) =>{
     return`
     <!DOCTYPE html>
     <html lang='en'>
@@ -20,4 +20,3 @@ const generatePage = (termName, github) =>{
 
 };
 
-module.exports = generatePage;
